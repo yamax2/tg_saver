@@ -1,0 +1,33 @@
+version: '3.7'
+
+environment:
+  LINTER_TAG: 1.33.0
+  GO_IMAGE_TAG: 1.15.5
+
+compose:
+  files:
+    - docker/docker-compose.yml
+  project_name: tg_saver
+
+interaction:
+  sh:
+    service: app
+
+  go:
+    service: app
+    command: go
+
+  run_it:
+    service: app
+    command: go run saver.go
+
+  cops:
+    service: app
+    command: golangci-lint run
+
+  db:
+    service: app
+    command: sqlite3 index.db
+
+provision:
+  - dip sh ./docker/install_linter.sh

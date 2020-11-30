@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      args:
+        GO_IMAGE_TAG: $GO_IMAGE_TAG
+    working_dir: /app
+    volumes:
+      - ..:/app
+      - ../../go:/go
+      - ssh-data:/ssh:ro
+    command: sh
+    environment:
+      - LINTER_TAG=$LINTER_TAG
+      - GO_IMAGE_TAG=$GO_IMAGE_TAG
+
+volumes:
+  ssh-data:
+    external:
+      name: ssh_data
