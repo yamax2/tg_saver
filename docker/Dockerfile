@@ -1,4 +1,4 @@
-ARG GO_IMAGE_TAG
-FROM golang:${GO_IMAGE_TAG}-alpine
+ARG DOCKER_GO_VERSION
+FROM golang:${DOCKER_GO_VERSION}-alpine
 
 RUN apk add --update --no-cache curl git sqlite

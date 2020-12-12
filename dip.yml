@@ -2,7 +2,7 @@ version: '3.7'
 
 environment:
   LINTER_TAG: 1.33.0
-  GO_IMAGE_TAG: 1.15.5
+  DOCKER_GO_VERSION: 1.15.6
 
 compose:
   files:
@@ -30,4 +30,8 @@ interaction:
     command: sqlite3 index.db
 
 provision:
+  - mkdir -p vendor
+  - ./docker/prepare_env.sh
   - dip sh ./docker/install_linter.sh
+#  - dip go get github.com/onsi/ginkgo/ginkgo
+#  - dip go get github.com/onsi/gomega/...
