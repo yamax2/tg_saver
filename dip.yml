@@ -30,7 +30,6 @@ interaction:
     command: sqlite3 index.db
 
 provision:
-  - mkdir -p vendor
   - ./docker/prepare_env.sh
   - dip sh ./docker/install_linter.sh
 #  - dip go get github.com/onsi/ginkgo/ginkgo
